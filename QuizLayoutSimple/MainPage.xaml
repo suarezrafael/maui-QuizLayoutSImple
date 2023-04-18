@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="QuizLayoutSimple.MainPage"
+             xmlns:viewmodel="clr-namespace:QuizLayoutSimple.ViewModel"
+             x:DataType="viewmodel:MainViewModel">
+
+    <StackLayout>
+
+        <!-- Pergunta -->
+        <Label Text="Qual é a capital do Brasil?" />
+
+        <!-- Lista de Respostas -->
+        <ListView ItemsSource="{Binding Respostas}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="viewmodel:Resposta">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Selecionado}" />
+                            <Label Text="{Binding Descricao}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Botão de Enviar Respostas -->
+        <Button Text="Enviar" Command="{Binding EnviarRespostasCommand}" />
+
+    </StackLayout>
+
+</ContentPage>
